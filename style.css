@@ -1,3 +1,4 @@
+/* 1. RESET E CONFIGURAÇÕES GERAIS */
 * {
     margin: 0;
     padding: 0;
@@ -14,6 +15,7 @@ body {
     overflow: hidden;
 }
 
+/* 2. CONTAINER E ESTRUTURA DO CARTÃO */
 .convite-container {
     perspective: 1200px;
 }
@@ -27,6 +29,7 @@ body {
     cursor: pointer;
 }
 
+/* Classe que o JavaScript adiciona para girar */
 .cartao.aberto {
     transform: rotateY(180deg);
 }
@@ -41,7 +44,7 @@ body {
     border: 4px solid #000;
 }
 
-/* FRENTE */
+/* 3. LADO DA FRENTE */
 .frente {
     background-image: url("frente.png");
     background-size: cover;
@@ -93,12 +96,12 @@ body {
     text-shadow: 1px 1px 2px #000;
 }
 
-/* VERSO */
+/* 4. LADO DO VERSO */
 .verso {
     background-image: url("verso.png");
     background-size: cover;
     background-position: center;
-    transform: rotateY(180deg);
+    transform: rotateY(180deg); /* Já começa virado */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -164,19 +167,51 @@ body {
 
 #timer { font-size: 1.2rem; font-weight: bold; margin-top: 5px; }
 
+/* 5. O BOTÃO (A parte mais importante) */
 .btn-confirmar {
+    display: inline-block;
     background: #e60000;
-    color: #fff;
-    border: none;
+    color: #fff !important;
     padding: 12px 25px;
     border-radius: 50px;
     font-weight: bold;
     text-transform: uppercase;
-    cursor: pointer;
+    text-decoration: none; /* Remove o sublinhado azul */
     margin-bottom: 10px;
+    
+    /* Z-INDEX ALTO: Faz o botão ficar "na frente" do giro */
+    position: relative;
+    z-index: 999; 
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.3s;
 }
 
+.btn-confirmar:hover {
+    background: #ff0000;
+    transform: scale(1.05);
+}
+
+/* 6. ANIMAÇÕES E CAMADA DE GIRO */
 @keyframes pulse {
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.6; transform: scale(0.95); }
+}
+
+/* Bloqueia cliques em todas as camadas visuais */
+.frente,
+.verso,
+.overlay,
+.overlay-verso,
+.conteudo,
+.titulo-frente,
+.toque,
+.detalhes-festa,
+.countdown {
+    pointer-events: none;
+}
+
+/* Libera clique APENAS no botão */
+.btn-confirmar {
+    pointer-events: auto;
 }
