@@ -242,10 +242,13 @@ body {
     }
 
     .cartao {
-        width: 98vw;
-        height: 98svh;
-        max-width: none;
-        max-height: none;
-        aspect-ratio: 9 / 16;
-    }
+    width: 100vw;
+    height: 100svh;
+
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
 }
