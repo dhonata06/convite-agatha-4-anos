@@ -239,3 +239,18 @@ body {
         aspect-ratio: 9 / 16;
     }
 }
+
+.cartao {
+    animation: zoomIn 0.6s ease;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
