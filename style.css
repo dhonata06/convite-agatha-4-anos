@@ -1,8 +1,6 @@
-body {
-    background: red !important;
-}
-
-/* 1. RESET E CONFIGURAÇÕES GERAIS */
+/* =========================
+   RESET GLOBAL
+========================= */
 * {
     margin: 0;
     padding: 0;
@@ -10,61 +8,82 @@ body {
     font-family: 'Trebuchet MS', sans-serif;
 }
 
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* =========================
+   BODY
+========================= */
 body {
-    background: #0f0f0f;
-    min-height: 100svh; /* viewport real do celular */
+    background: #000;
+}
+
+/* =========================
+   CONTAINER (PERSPECTIVE AQUI!)
+========================= */
+.convite-container {
+    width: 100vw;
+    height: 100svh;
+
+    perspective: 1200px;
+    -webkit-perspective: 1200px;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    padding: env(safe-area-inset-top)
-             env(safe-area-inset-right)
-             env(safe-area-inset-bottom)
-             env(safe-area-inset-left);
 }
 
-
-/* 2. CONTAINER E ESTRUTURA DO CARTÃO */
-.convite-container {
-    perspective: 1200px;
-}
-
+/* =========================
+   CARTÃO
+========================= */
 .cartao {
-    width: 85vw;
-    max-width: 360px;
-    aspect-ratio: 9 / 16;
+    width: 100vw;
+    height: 100svh;
+
     position: relative;
+
     transform-style: preserve-3d;
-    transition: transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -webkit-transform-style: preserve-3d;
+
+    transition: transform 0.9s ease;
     cursor: pointer;
 }
 
-/* Classe que o JavaScript adiciona para girar */
+/* ESTADO ABERTO */
 .cartao.aberto {
     transform: rotateY(180deg);
 }
 
-.frente, .verso {
+/* =========================
+   FACES
+========================= */
+.frente,
+.verso {
     position: absolute;
+    inset: 0;
+
     width: 100%;
     height: 100%;
+
     backface-visibility: hidden;
-    border-radius: 22px;
-    overflow: hidden;
-    border: 4px solid #000;
+    -webkit-backface-visibility: hidden;
 }
 
-/* 3. LADO DA FRENTE */
+/* =========================
+   FRENTE
+========================= */
 .frente {
-    background-image: url("frente.png");
-    background-size: cover;
-    background-position: center;
+    background: url("frente.png") center / cover no-repeat;
+    transform: rotateY(0deg);
 }
 
 .frente .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0,0,0,0.3);
     z-index: 1;
 }
 
@@ -100,40 +119,44 @@ body {
     text-align: center;
     font-size: 14px;
     font-weight: bold;
-    color: #ffffff;
+    color: #fff;
     z-index: 2;
     animation: pulse 1.5s infinite;
     text-shadow: 1px 1px 2px #000;
 }
 
-/* 4. LADO DO VERSO */
+/* =========================
+   VERSO
+========================= */
 .verso {
-    background-image: url("verso.png");
-    background-size: cover;
-    background-position: center;
-    transform: rotateY(180deg); /* Já começa virado */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: url("verso.png") center / cover no-repeat;
+    transform: rotateY(180deg);
 }
 
 .overlay-verso {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.4));
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.4)
+    );
     z-index: 1;
 }
 
 .conteudo {
     position: relative;
     z-index: 2;
+
     width: 100%;
     height: 100%;
     padding: 25px;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
     text-align: center;
     color: #fff;
 }
@@ -164,36 +187,46 @@ body {
     font-weight: bold;
 }
 
-.local { color: #39ff14; }
+.local {
+    color: #39ff14;
+}
 
+/* =========================
+   COUNTDOWN
+========================= */
 .countdown {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255,255,255,0.1);
     padding: 10px;
     border-radius: 15px;
     width: 100%;
 }
 
-.countdown span { font-size: 0.7rem; color: #bbb; }
+.countdown span {
+    font-size: 0.7rem;
+    color: #bbb;
+}
 
-#timer { font-size: 1.2rem; font-weight: bold; margin-top: 5px; }
+#timer {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 5px;
+}
 
-/* 5. O BOTÃO (A parte mais importante) */
+/* =========================
+   BOTÃO
+========================= */
 .btn-confirmar {
-    display: inline-block;
     background: #e60000;
-    color: #fff !important;
-    padding: 12px 25px;
+    color: #fff;
+    padding: 14px 28px;
     border-radius: 50px;
+
     font-weight: bold;
     text-transform: uppercase;
-    text-decoration: none; /* Remove o sublinhado azul */
-    margin-bottom: 10px;
-    
-    /* Z-INDEX ALTO: Faz o botão ficar "na frente" do giro */
-    position: relative;
-    z-index: 999; 
+    border: none;
+
     cursor: pointer;
-    border: 2px solid transparent;
+    z-index: 10;
     transition: 0.3s;
 }
 
@@ -202,13 +235,9 @@ body {
     transform: scale(1.05);
 }
 
-/* 6. ANIMAÇÕES E CAMADA DE GIRO */
-@keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(0.95); }
-}
-
-/* Bloqueia cliques em todas as camadas visuais */
+/* =========================
+   BLOQUEIO DE CLIQUES
+========================= */
 .frente,
 .verso,
 .overlay,
@@ -221,39 +250,14 @@ body {
     pointer-events: none;
 }
 
-/* Libera clique APENAS no botão */
 .btn-confirmar {
     pointer-events: auto;
 }
 
-/* 📱 AJUSTES PARA CELULAR */
-@media (max-width: 600px) {
-
-    body {
-    margin: 0;
-    padding: 0;
-    background: #000; 
-}
-
-
-    .convite-container {
-    width: 100vw;
-    height: 100svh;
-    display: flex;
-}
-
-
-    .cartao {
-    width: 100vw;
-    height: 100svh;
-
-    border-radius: 0;   /* ISSO resolve as laterais */
-    overflow: hidden;
-
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-
+/* =========================
+   ANIMAÇÃO
+========================= */
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.95); }
 }

@@ -1,8 +1,19 @@
 const cartao = document.getElementById("cartao");
+const btnConfirmar = document.getElementById("btnConfirmar");
 
-cartao.addEventListener("click", function () {
-    this.classList.toggle("aberto");
+// Clique no card → gira
+cartao.addEventListener("click", () => {
+    cartao.classList.toggle("aberto");
 });
+
+// Clique no botão → abre WhatsApp
+btnConfirmar.addEventListener("click", (e) => {
+    e.stopPropagation(); // impede o giro
+
+    const url = "https://wa.me/5561994420949?text=Olá!+Confirmo+presença!+🐞";
+    window.open(url, "_blank");
+});
+
 
 // CONTAGEM REGRESSIVA
 const dataFesta = new Date("March 14, 2026 19:00:00").getTime();

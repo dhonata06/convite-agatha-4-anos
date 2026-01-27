@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Convite Agatha</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,21 +11,31 @@
 <div class="convite-container">
     <div class="cartao" id="cartao">
 
+        <!-- FRENTE -->
         <div class="frente">
             <div class="overlay"></div>
+
             <div class="titulo-frente">
                 <h1>Agatha Christine</h1>
                 <h2 class="idade-badge">4 ANINHOS</h2>
             </div>
+
             <p class="toque">TOQUE PARA TRANSFORMAR ✨</p>
         </div>
 
+        <!-- VERSO -->
         <div class="verso">
             <div class="overlay-verso"></div>
+
             <div class="conteudo">
                 <h1>AGATHA</h1>
                 <h2 class="subtitulo">FAZ 4 ANINHOS</h2>
-                <p class="missao">Ladybug e Cat Noir convocam você! 🐞🐾</p>
+
+                <p class="missao">
+                    Ladybug e Cat Noir convocam você para celebrar a vida da nossa heroína Agatha!
+                    Prepare-se para uma missão cheia de doces e diversão. Vai ser simplesmente…
+                    <strong>Miraculous!</strong> 🐞🐾
+                </p>
 
                 <div class="detalhes-festa">
                     <p>📅 14 DE MARÇO</p>
@@ -38,13 +48,12 @@
                     <div id="timer">Carregando...</div>
                 </div>
 
-                <a href="https://wa.me/5561994420949?text=Olá!+Confirmo+presença!+🐞"
-                   target="_blank"
-                   class="btn-confirmar">
-                   Confirmar Presença
-                </a>
+                <button class="btn-confirmar" id="btnConfirmar">
+                    Confirmar Presença
+                </button>
             </div>
         </div>
+
     </div>
 </div>
 
