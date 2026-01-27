@@ -230,25 +230,30 @@ body {
 @media (max-width: 600px) {
 
     body {
-        padding: 0;
-    }
+    margin: 0;
+    padding: 0;
+    background: #000; 
+}
+
 
     .convite-container {
-        width: 100vw;
-        height: 100svh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    width: 100vw;
+    height: 100svh;
+    display: flex;
+}
+
 
     .cartao {
     width: 100vw;
     height: 100svh;
 
+    border-radius: 0;   /* ISSO resolve as laterais */
+    overflow: hidden;
+
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: pointer;
 }
+
 
 }
